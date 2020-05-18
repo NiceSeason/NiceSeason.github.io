@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="generator" content="Hexo 4.2.0"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>AJAX - 学习笔记</title><meta description="AJAX1. AJAX概述 AJAX &amp;#x3D; Asynchronous JavaScript and XML（异步的 JavaScript 和XML） 现在一般与json共同使用更多。 AJAX 是与服务器交换数据并更新部分网页的艺术，在不重新加载整个页面的情况下。 比如搜索框的下拉列表、注册时表单未提交时就会有格式判断。  2 . AJAX的原理XMLHttpRequest 是js的对象，是AJAX"><meta property="og:type" content="blog"><meta property="og:title" content="AJAX"><meta property="og:url" content="http://yoursite.com/2020/05/18/AJAX/"><meta property="og:site_name" content="学习笔记"><meta property="og:description" content="AJAX1. AJAX概述 AJAX &amp;#x3D; Asynchronous JavaScript and XML（异步的 JavaScript 和XML） 现在一般与json共同使用更多。 AJAX 是与服务器交换数据并更新部分网页的艺术，在不重新加载整个页面的情况下。 比如搜索框的下拉列表、注册时表单未提交时就会有格式判断。  2 . AJAX的原理XMLHttpRequest 是js的对象，是AJAX"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://yoursite.com/img/my_avatar.jpg"><meta property="article:published_time" content="2020-05-18T09:46:25.448Z"><meta property="article:modified_time" content="2020-03-09T09:13:56.297Z"><meta property="article:author" content="chemical coder"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/my_avatar.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2020/05/18/AJAX/"},"headline":"学习笔记","image":["http://yoursite.com/img/og_image.png"],"datePublished":"2020-05-18T09:46:25.448Z","dateModified":"2020-03-09T09:13:56.297Z","author":{"@type":"Person","name":"chemical coder"},"description":"AJAX1. AJAX概述 AJAX &#x3D; Asynchronous JavaScript and XML（异步的 JavaScript 和XML） 现在一般与json共同使用更多。 AJAX 是与服务器交换数据并更新部分网页的艺术，在不重新加载整个页面的情况下。 比如搜索框的下拉列表、注册时表单未提交时就会有格式判断。  2 . AJAX的原理XMLHttpRequest 是js的对象，是AJAX"}</script><link rel="canonical" href="http://yoursite.com/2020/05/18/AJAX/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="学习笔记" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/NiceSeason"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><time class="level-item" dateTime="2020-05-18T09:46:25.448Z" title="2020-05-18T09:46:25.448Z">2020-05-18</time><span class="level-item">8 minutes read (About 1187 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">AJAX</h1><div class="content"><h1 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h1><h2 id="1-AJAX概述"><a href="#1-AJAX概述" class="headerlink" title="1. AJAX概述"></a>1. AJAX概述</h2><ul>
+<li>AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和XML）</li>
+<li>现在一般与json共同使用更多。</li>
+<li>AJAX 是与服务器交换数据并更新部分网页的艺术，在不重新加载整个页面的情况下。</li>
+<li>比如搜索框的下拉列表、注册时表单未提交时就会有格式判断。</li>
+</ul>
+<h2 id="2-AJAX的原理"><a href="#2-AJAX的原理" class="headerlink" title="2 . AJAX的原理"></a>2 . AJAX的原理</h2><p>XMLHttpRequest 是js的对象，是AJAX的基础，用于在后台和服务器交换数据。</p>
+<h3 id="XMLHttpRequest的创建"><a href="#XMLHttpRequest的创建" class="headerlink" title="XMLHttpRequest的创建"></a>XMLHttpRequest的创建</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xmlhttp;</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest)</span><br><span class="line">  &#123;<span class="comment">// code for IE7+, Firefox, Chrome, Opera, Safari</span></span><br><span class="line">  xmlhttp=<span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  &#123;<span class="comment">// code for IE6, IE5</span></span><br><span class="line">  xmlhttp=<span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="打开与服务器的连接"><a href="#打开与服务器的连接" class="headerlink" title="打开与服务器的连接"></a>打开与服务器的连接</h3><p>open(method, url, async)：</p>
+<ul>
+<li><p>method：请求方式，通常为GET或POST；</p>
+</li>
+<li><p>url：请求的服务器地址，例如：/ajaxdemo1/AServlet，若为GET请求，还可以在URL后追加参数，在springMVC中即为@RequestMapping后的路径</p>
+</li>
+<li><p>async：这个参数可以不给，默认值为true，表示异步请求</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xmlHttp.open(<span class="string">"GET"</span>, <span class="string">"/ajaxdemo1/AServlet?username=zhangsan&amp;password=123"</span>, <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="发送请求"><a href="#发送请求" class="headerlink" title="发送请求"></a>发送请求</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//get请求无参数</span></span><br><span class="line">xmlHttp.send();</span><br><span class="line"></span><br><span class="line"><span class="comment">//post请求附带参数</span></span><br><span class="line"><span class="comment">//如果需要像 HTML 表单那样 POST 数据，请使用 setRequestHeader() 来添加 HTTP 头。然后在 send() 方法中规定您希望发送的数据</span></span><br><span class="line">xmlhttp.setRequestHeader(<span class="string">"Content-type"</span>,<span class="string">"application/x-www-form-urlencoded"</span>);</span><br><span class="line">xmlhttp.send(<span class="string">"fname=Bill&amp;lname=Gates"</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="接收服务器响应"><a href="#接收服务器响应" class="headerlink" title="接收服务器响应"></a>接收服务器响应</h3><p>当请求发送出去后，服务器端Servlet就开始执行了，但服务器端的响应还没有接收到。接下来我们来接收服务器的响应。</p>
+<h4 id="onreadystatechange事件"><a href="#onreadystatechange事件" class="headerlink" title="onreadystatechange事件"></a>onreadystatechange事件</h4><p>XMLHttpRequest对象有一个onreadystatechange事件，它会XMLHttpRequest对象的状态发生变化时被调用。下面介绍一下XMLHttpRequest对象的5种状态：</p>
+<ul>
+<li>0：创建了XMLHttpRequest对象，还未调用open()方法；</li>
+<li>1：open()方法已调用，但还没调用send()方法；</li>
+<li>2：send()方法已调用；</li>
+<li>3：开始读取服务器响应；</li>
+<li>4：读取服务器响应结束。</li>
+</ul>
+<p>onreadystatechange事件会在状态为1、2、3、4时引发。但我们通常只关心最后一种状态（4），即读取服务器响应结束后，客户端才会做出改变。可以通过XMLHttpRequest对象的readyState属性来得到该对象的状态。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">xmlHttp.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(xmlHttp.readyState == <span class="number">4</span> &amp;&amp; xmlHttp.status == <span class="number">200</span>) &#123;</span><br><span class="line">				alert(xmlHttp.responseText);	</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="服务器响应属性"><a href="#服务器响应属性" class="headerlink" title="服务器响应属性"></a>服务器响应属性</h4><ul>
+<li>responseText：获得字符串形式的响应数据。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"Div1"</span>).innerHTML=xmlhttp.responseText;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>responseXML：获得XML形式的响应数据。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">xmlDoc=xmlhttp.responseXML;</span><br><span class="line">txt=<span class="string">""</span>;</span><br><span class="line">x=xmlDoc.getElementsByTagName(<span class="string">"title"</span>);</span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;x.length;i++)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">  对应输出为</span></span><br><span class="line"><span class="comment">  	Harry Potter</span></span><br><span class="line"><span class="comment">	Everyday Italian</span></span><br><span class="line"><span class="comment">	Learning XML</span></span><br><span class="line"><span class="comment">	XQuery Kick Start</span></span><br><span class="line"><span class="comment">	分别为各个&lt;title&gt;标签中的值</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">  txt=txt + x[i].childNodes[<span class="number">0</span>].nodeValue + <span class="string">"&lt;br /&gt;"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"myDiv"</span>).innerHTML=txt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="JQuery和AJAX"><a href="#JQuery和AJAX" class="headerlink" title="JQuery和AJAX"></a>JQuery和AJAX</h3><p>由于AJAX本身编程相对复杂，JQuery框架对其进行了简化，主要有以下几种方法：</p>
+<table>
+<thead>
+<tr>
+<th align="left">关键字</th>
+<th align="left">简介</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">$.ajax()</td>
+<td align="left">提交AJAX请求</td>
+</tr>
+<tr>
+<td align="left">$.get()</td>
+<td align="left">使用get方式提交ajax</td>
+</tr>
+<tr>
+<td align="left">$.post</td>
+<td align="left">使用post方式提交ajax</td>
+</tr>
+<tr>
+<td align="left">load()</td>
+<td align="left">最简单的调用ajax的方式</td>
+</tr>
+</tbody></table>
+<h4 id="ajax-方法"><a href="#ajax-方法" class="headerlink" title="$.ajax() 方法"></a>$.ajax() 方法</h4><p>语法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jQuery.ajax([settings])</span><br></pre></td></tr></table></figure>
+
+<p>settings：可选。用于配置 Ajax 请求的键值对集合。可以通过 $.ajaxSetup() 设置任何选项的默认值，常用参数如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">参数名</th>
+<th align="left">类型</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">url</td>
+<td align="left">String</td>
+<td align="left">请求地址，默认值为当前页</td>
+</tr>
+<tr>
+<td align="left">data</td>
+<td align="left">String</td>
+<td align="left">发送到服务器的数据。将自动转换为请求字符串格式。GET 请求中将附加在 URL 后。必须为 Key/Value 格式。</td>
+</tr>
+<tr>
+<td align="left">type</td>
+<td align="left">String</td>
+<td align="left">请求方式 (“POST” 或 “GET”)， 默认为 “GET”。</td>
+</tr>
+<tr>
+<td align="left">success</td>
+<td align="left">Function</td>
+<td align="left">请求成功后的回调函数。</td>
+</tr>
+<tr>
+<td align="left">dataType</td>
+<td align="left">String</td>
+<td align="left">预期服务器返回的数据类型。如果不指定，jQuery 将自动根据 HTTP 包 MIME 信息来智能判断，，传递给回调函数。可用值:”xml”、”html”、”script”、”json”、”text”</td>
+</tr>
+</tbody></table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">                url:<span class="string">"/testAjax"</span>,</span><br><span class="line">                data:&#123;</span><br><span class="line">                    <span class="string">"username"</span>:<span class="string">"mmm"</span>,</span><br><span class="line">                    <span class="string">"password"</span>:<span class="number">12345</span>,</span><br><span class="line">                    <span class="string">"address"</span>:<span class="string">"Hefei"</span></span><br><span class="line">                &#125;,</span><br><span class="line">                success:<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">                    alert(<span class="string">"AJax()方法返回的数据"</span>+data)</span><br><span class="line">                &#125;,</span><br><span class="line">                type:<span class="string">"POST"</span></span><br><span class="line">            &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>之后的$.get()与$.post()方法就是对本方法的简化，不用在标出参数名，但调用函数时要按照一定顺序。</p>
+<h4 id="get-方法"><a href="#get-方法" class="headerlink" title="$.get() 方法"></a>$.get() 方法</h4><p>语法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="keyword">get</span>(URL,callback);</span><br></pre></td></tr></table></figure>
+
+<p>URL：希望请求的URL，可附带请求参数</p>
+<p>callback：回调函数(可选)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="keyword">get</span>(</span><br><span class="line">    		"/testAjax",</span><br><span class="line">            &#123;<span class="string">"username"</span>:value&#125;,</span><br><span class="line">    		<span class="comment">//将id=checkResult标签的内容修改为返回数据</span></span><br><span class="line">            <span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">              $(<span class="string">"#checkResult"</span>).html(result);</span><br><span class="line">            &#125;</span><br><span class="line">        );</span><br></pre></td></tr></table></figure>
+
+<h4 id="post-方法"><a href="#post-方法" class="headerlink" title="$.post() 方法"></a>$.post() 方法</h4><p>语法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.post(URL,data,callback);</span><br></pre></td></tr></table></figure>
+
+<p>URL：希望请求的URL</p>
+<p>data：连同请求发送的数据(可选)</p>
+<p>callback：回调函数(可选)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$.post(</span><br><span class="line">                <span class="string">"/testAjax"</span>,</span><br><span class="line">                &#123;</span><br><span class="line">                    username:<span class="string">"mhs"</span>,</span><br><span class="line">                    password:<span class="number">123</span>,</span><br><span class="line">                    age:<span class="number">26</span></span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">                    alert(<span class="string">"jquery AJAX的Post()返回结果"</span>+data);</span><br><span class="line">                &#125;</span><br><span class="line">            )</span><br></pre></td></tr></table></figure>
+
+<h4 id="load-方法"><a href="#load-方法" class="headerlink" title="load() 方法"></a>load() 方法</h4><p>从服务器加载数据，并把返回的数据放入备选元素中</p>
+<p>语法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(selector).load(URL,data,callback);</span><br></pre></td></tr></table></figure>
+
+<p>URL：希望请求的URL</p>
+<p>data：连同请求发送的数据(可选)</p>
+<p>callback：回调函数(可选)</p>
+</div><div class="a2a_kit a2a_kit_size_32 a2a_default_style"><a class="a2a_dd" href="https://www.addtoany.com/share"></a><a class="a2a_button_facebook"></a><a class="a2a_button_twitter"></a><a class="a2a_button_telegram"></a><a class="a2a_button_whatsapp"></a><a class="a2a_button_reddit"></a></div><script src="https://static.addtoany.com/menu/page.js" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2020/05/18/mysql/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">mysql</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2020/04/18/springboot%E9%AB%98%E7%BA%A7/"><span class="level-item">springboot高级</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: '16721b42f8e31df3d2f967d8c6a19741',
+            repo: 'NiceSeason.github.io',
+            owner: 'NiceSeason',
+            clientID: '78656b4e09606603a20d',
+            clientSecret: 'b33f419dc2d3756e040abcc88e24bdd001a7f1e0',
+            admin: ["NiceSeason"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: 'last',
+            
+            
+            enableHotKey: true
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><!--!--><div class="card widget"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="" src="/img/my_avatar.jpg" alt="彩笔君"></figure><p class="title is-size-4 is-block line-height-inherit">彩笔君</p><p class="is-size-6 is-block">一个平凡的奋斗者</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>安徽·合肥</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">4</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Category</p><a href="/categories"><p class="title">1</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">4</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/NiceSeason" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/NiceSeason"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="/"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="/"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="/"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/categories/spring/"><span class="level-start"><span class="level-item">spring</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><h3 class="menu-label">Recent</h3><article class="media"><div class="media-content size-small"><p><time dateTime="2020-05-18T09:46:25.456Z">2020-05-18</time></p><p class="title is-6"><a class="link-muted" href="/2020/05/18/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">动态代理</a></p><p class="is-uppercase"></p></div></article><article class="media"><div class="media-content size-small"><p><time dateTime="2020-05-18T09:46:25.449Z">2020-05-18</time></p><p class="title is-6"><a class="link-muted" href="/2020/05/18/mysql/">mysql</a></p><p class="is-uppercase"></p></div></article><article class="media"><div class="media-content size-small"><p><time dateTime="2020-05-18T09:46:25.448Z">2020-05-18</time></p><p class="title is-6"><a class="link-muted" href="/2020/05/18/AJAX/">AJAX</a></p><p class="is-uppercase"></p></div></article><article class="media"><a class="media-left" href="/2020/04/18/springboot%E9%AB%98%E7%BA%A7/"><p class="image is-64x64"><img class="thumbnail" src="/images/OG-Spring.png" alt="springboot高级"></p></a><div class="media-content size-small"><p><time dateTime="2020-04-18T10:00:27.000Z">2020-04-18</time></p><p class="title is-6"><a class="link-muted" href="/2020/04/18/springboot%E9%AB%98%E7%BA%A7/">springboot高级</a></p><p class="is-uppercase"><a class="link-muted" href="/categories/spring/">spring</a></p></div></article></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/archives/2020/05/"><span class="level-start"><span class="level-item">May 2020</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2020/04/"><span class="level-start"><span class="level-item">April 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"><span class="tag">分布式</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%A3%80%E7%B4%A2/"><span class="tag">检索</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%B6%88%E6%81%AF/"><span class="tag">消息</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BC%93%E5%AD%98/"><span class="tag">缓存</span><span class="tag is-grey-lightest">1</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="学习笔记" height="28"></a><p class="size-small"><span>&copy; 2020 chemical coder</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/NiceSeason"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            site: {
+                url: 'http://yoursite.com',
+                external_link: {"enable":true,"exclude":[]}
+            },
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to Top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
